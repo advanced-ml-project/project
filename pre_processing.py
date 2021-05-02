@@ -37,7 +37,7 @@ def strip_whitespace(text):
     text = " ".join(text.split())
     return text
 
-def remove_stopwords(text, lan='spanish', add_sw = []):
+def remove_stopwords(text, lan='english', add_sw = []):
     if lan == 'spanish':
         sp = set(stopwords.words('spanish')).union(set(add_sw))
         words_tokens = word_tokenize(text)
@@ -57,7 +57,7 @@ def remove_stopwords(text, lan='spanish', add_sw = []):
 
     return text
 
-def apply_stemming(text, lan):
+def apply_stemming(text, lan = 'english'):
     if lan == 'spanish':
         stemmer = SnowballStemmer('spanish')
         words_tokens = word_tokenize(text)
