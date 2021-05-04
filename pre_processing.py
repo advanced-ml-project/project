@@ -99,7 +99,7 @@ def clean_text(text, accents=True, punctuation=True, numbers=True, lowercase=Tru
     return(text)
 
 
-def bi_gram(docs, min_count=10, threshold=50):
+def bi_gram(docs, min_count=15, threshold=60):
     '''
     Obtain the bi_gram words out of a collection of documents (docs)
     '''
@@ -107,7 +107,9 @@ def bi_gram(docs, min_count=10, threshold=50):
     # Build the bigram models
     bigram = gensim.models.Phrases(pre_process_docs,
                                    min_count=min_count,
-                                   threshold=threshold)  # higher threshold fewer phrases.
+                                   # higher threshold fewer phrases
+                                   threshold=threshold)
+
     # Faster way to get a sentence clubbed as a bigram
     bigram_mod = gensim.models.phrases.Phraser(bigram)
 
