@@ -4,7 +4,6 @@ Useful functions to pre process text
 import unicodedata
 import re
 import string
-import nltk
 from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer
 from nltk import word_tokenize
