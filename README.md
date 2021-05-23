@@ -13,3 +13,36 @@ Because isolation and antagonism prevents the kind of generative dialog social m
 ## Midterm Presentation Slides
 This is a google slides deck on our progress so far.
 [Midterm Presentation Slides](https://docs.google.com/presentation/d/1N7TC0ldK4w6n4ULysJS4l5PE8TlKLi_6d1kI6oE6oPc/edit?usp=sharing)
+
+
+## Repo Contents
+
+### tweet_scraping.ipynb
+(339 lines of code)
+
+
+### pre_processing.py
+
+
+### Data Cleaning
+
+
+### Clean tweets
+
+
+### topics_articles
+
+
+### topics_twitter
+
+
+### sentiment_scores.ipynb
+(134 lines of code)
+
+
+### Controversy_scores
+
+
+### Collate_Data
+
+
