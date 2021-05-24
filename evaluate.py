@@ -48,9 +48,6 @@ def train_model(model,
             text = text.to(device)
             text_len = text_len.to(device)
             output = model(text, text_len)
-            
-            #print(output[0], labels[0])
-            
             loss = criterion(output, labels)
             optimizer.zero_grad()
             loss.backward()
