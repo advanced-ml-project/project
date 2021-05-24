@@ -169,7 +169,7 @@ def evaluate(model, test_loader, device='cpu'):
             labels = labels.to(device)
             text = text.to(device)
             text_len = text_len.to(device)
-            output = model(text, text_len)
+            output = model(text, text_len)            
             output = torch.max(output, axis=1).indices
             y_pred.extend(output.tolist())
             y_true.extend(labels.tolist())
@@ -181,12 +181,13 @@ def evaluate(model, test_loader, device='cpu'):
     
     acc = acc / len(y_pred)
     
+    
     print('Test Accuracy: ', acc)
     
     print('Classification Report:')
-    print(classification_report(y_true, y_pred, labels=[2,1,0], digits=4))
+    print(classification_report(y_true, y_pred, labels=[1,0], digits=4))
     
-    cm = confusion_matrix(y_true, y_pred, labels=[2,1,0])
+    cm = confusion_matrix(y_true, y_pred, labels=[1,0])
     ax= plt.subplot()
     sns.heatmap(cm, annot=True, ax = ax, cmap='Blues', fmt="d")
 
@@ -195,7 +196,7 @@ def evaluate(model, test_loader, device='cpu'):
     ax.set_xlabel('Predicted Labels')
     ax.set_ylabel('True Labels')
 
-    ax.xaxis.set_ticklabels(['HIGH','MED','LOW'])
-    ax.yaxis.set_ticklabels(['HIGH','MED','LOW'])
+    ax.xaxis.set_ticklabels(['HIGH','LOW'])
+    ax.yaxis.set_ticklabels(['HIGH','LOW'])
     
     return None

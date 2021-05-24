@@ -30,7 +30,7 @@ class LSTM(nn.Module):
                             bidirectional=True)
         self.drop = nn.Dropout(p=dropout)
 
-        self.fc = nn.Linear(2*dimension, 3)
+        self.fc = nn.Linear(2*dimension, 2)
 
     def forward(self, text, text_len):
 
