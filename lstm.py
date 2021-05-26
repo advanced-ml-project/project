@@ -29,7 +29,6 @@ class LSTM(nn.Module):
                             batch_first=True,
                             bidirectional=True)
         self.drop = nn.Dropout(p=dropout)
-
         self.fc = nn.Linear(2*dimension, 2)
 
     def forward(self, text, text_len):

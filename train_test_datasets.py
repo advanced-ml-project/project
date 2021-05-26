@@ -5,18 +5,42 @@ make train/valid/test splits for evaluation
 
 '''
 
+import torch
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
 MAX_SEQ_LEN = 100
 
 def trim_string(x, max_len=MAX_SEQ_LEN):
+    '''
+    trims long strings down to the max length
+    
+    Takes: string
+    Returns: string[0:max_len]
+    '''
     x = x.split(maxsplit=max_len)
     x = ' '.join(x[:max_len])
     return x
 
 def make_data(raw_data_path, destination_folder, test_perc):
     '''
+    Creates a file for training, testing and validation.
+    Saves these to the designated directory.
+    And outputs class weights in a torch tensor
+    for use with model loss.
+    
+    Takes:
+    - raw_data_path: string, location of data file
+        (assumes the name of the text column == 'text'
+         and the target column == 'vaderCat')
+    - destination_folder: string, save location
+    - test_perc: float, the percentage to be held out for
+        validation and testing. Divided equally between.
+    
+    Returns: torch tensor of class weights.
+        also saves three files to destination_folder: 
+        train.csv, valid.csv, test.csv
+    
     '''
     
     train_test_ratio = 1.0 - (test_perc / 2)
@@ -39,22 +63,8 @@ def make_data(raw_data_path, destination_folder, test_perc):
     df_raw = df_raw[['label', 'text']]
 
     # Split according to label
-    df_low_all = df_raw[df_raw['label'] == 0]
-    df_high_all = df_raw[df_raw['label'] == 1]
-
-    # Undersample dataset
-    undersample_low = min(1.0, round(df_high_all.shape[0]/df_low_all.shape[0], 2))
-    undersample_high = min(1.0, round(df_low_all.shape[0]/df_high_all.shape[0], 2))
-
-    if undersample_low < 1.0:
-        df_low, df_rejects = train_test_split(df_low_all, train_size=undersample_low, random_state=1)
-    else:
-        df_low = df_low_all
-    
-    if undersample_high < 1.0:
-        df_high, df_rejects = train_test_split(df_high_all, train_size=undersample_high, random_state=1)
-    else:
-        df_high = df_high_all
+    df_low = df_raw[df_raw['label'] == 0]
+    df_high = df_raw[df_raw['label'] == 1]
         
     # Train-test split
     df_low_full_train, df_low_test = train_test_split(df_low, train_size = train_test_ratio, random_state = 1)
@@ -73,6 +83,12 @@ def make_data(raw_data_path, destination_folder, test_perc):
     df_train.to_csv(destination_folder + '/train.csv', index=False)
     df_valid.to_csv(destination_folder + '/valid.csv', index=False)
     df_test.to_csv(destination_folder + '/test.csv', index=False)
+    
+    # Make weights
+    weights = [ round(df_train[df_train['label'] == 0].shape[0] / df_train.shape[0], 4),
+                round(df_train[df_train['label'] == 1].shape[0] / df_train.shape[0], 4) ]
+    
+    class_weights = torch.tensor(weights)
 
     # Print results
     print("Datasets saved.")
@@ -84,4 +100,4 @@ def make_data(raw_data_path, destination_folder, test_perc):
     print("low in train: ", df_train[df_train['label']==0].shape[0])
     print("high in train: ", df_train[df_train['label']==1].shape[0])
     
-    return None
+    return class_weights
