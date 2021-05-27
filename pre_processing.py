@@ -70,7 +70,7 @@ def apply_stemming(text, lan='english'):
     return text
 
 
-def clean_text(text, accents=True, punctuation=True, numbers=True, lowercase=True,
+def clean_text(text, accents=True, punctuation=True, numbers=True, lowercase=False,
                whitespace=True, lan='english', stopwords=False,
                stemming=False, add_sw=['the']):
 

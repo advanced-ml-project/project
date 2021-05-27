@@ -63,8 +63,22 @@ def make_data(raw_data_path, destination_folder, test_perc):
     df_raw = df_raw[['label', 'text']]
 
     # Split according to label
-    df_low = df_raw[df_raw['label'] == 0]
-    df_high = df_raw[df_raw['label'] == 1]
+    df_low_all = df_raw[df_raw['label'] == 0]
+    df_high_all = df_raw[df_raw['label'] == 1]
+
+    # Undersample dataset
+    if df_low_all.shape[0] < df_high_all.shape[0]:
+        df_high, rejected = train_test_split(df_high_all,
+                                             train_size=(df_low_all.shape[0]/
+                                                         df_high_all.shape[0]))
+        df_low = df_low_all
+        
+    else:
+        df_low, rejected = train_test_split(df_low_all,
+                                             train_size=(df_high_all.shape[0]/
+                                                         df_low_all.shape[0]))
+        df_high = df_high_all
+
         
     # Train-test split
     df_low_full_train, df_low_test = train_test_split(df_low, train_size = train_test_ratio, random_state = 1)
