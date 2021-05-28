@@ -89,9 +89,12 @@ def make_data(raw_data_path, destination_folder, test_perc):
     df_high_train, df_high_valid = train_test_split(df_high_full_train, train_size = train_valid_ratio, random_state = 1)
 
     # Concatenate splits of different labels
-    df_train = pd.concat([df_low_train, df_high_train], ignore_index=True, sort=False)
-    df_valid = pd.concat([df_low_valid, df_high_valid], ignore_index=True, sort=False)
-    df_test = pd.concat([df_low_test, df_high_test], ignore_index=True, sort=False)
+    df_train = pd.concat([df_low_train, df_high_train],
+                         ignore_index=True, sort=False).sample(frac=1).reset_index(drop=True)
+    df_valid = pd.concat([df_low_valid, df_high_valid],
+                         ignore_index=True, sort=False).sample(frac=1).reset_index(drop=True)
+    df_test = pd.concat([df_low_test, df_high_test],
+                        ignore_index=True, sort=False).sample(frac=1).reset_index(drop=True)
 
     # Write preprocessed data
     df_train.to_csv(destination_folder + '/train.csv', index=False)
