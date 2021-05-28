@@ -1,14 +1,10 @@
 '''
 dataclassCNN.py
-
-File to create a custom data class for pytorch. 
-
-Author: Jesica Maria Ramirez Toscano
+File to create a Custom Data Class and Collate Function for PyTorch.
+This file is for the CNN model.
 '''
-
 from torch.utils.data import Dataset
-from nltk import word_tokenize
-#import pre_processing as pp
+from torchtext.data.utils import get_tokenizer
 
 
 class ProjectDataset(Dataset):
@@ -17,18 +13,18 @@ class ProjectDataset(Dataset):
 
         # Target first, then Inputs.
         self.samples = []
+        tokenizer = get_tokenizer('basic_english')
 
         if not target_col and not text_col:
             targets = list(data[0])
             inputs = list(data[1])
             for idx in range(len(targets)):
-                text = word_tokenize(inputs[idx])
+                text = tokenizer(inputs[idx])
                 self.samples.append([targets[idx], text])
         else:
             for _, row in data.iterrows():
                 text = row[text_col]
-                #text = pp.clean_text(text, lowercase=False)
-                text = word_tokenize(text)
+                text = tokenizer(text)
                 target = row[target_col]
                 self.samples.append([target, text])
 
