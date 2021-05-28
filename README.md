@@ -1,48 +1,53 @@
-# Advanced Machine Learning for Public Policy: Predicting Polarization in Social Media
+# Predicting Polarization From News Outlets Tweets
 
 **Team Members**  
 * Stephanie Ramos Gomez
 * Kelsey Anderson
 * Jesica Ramirez Toscano
 
+## Table of Contents 
+
+* [Summary](#summary)
+* [Set up](#set-up)
+* [Data Collection and Pre-processing](#data-collection-and-pre-processing)
+* [Data Exploration](#data-exploration)
+* [Model Building](#model-building)
+   * RNN
+   * CNN
+   * Logistic Regression
+* [Model Interpretability: Integrated gradients](#model-interpretability)
+* [Final Paper and Acknowledgements](final-paper-and-acknowledgements)
+
 ## Summary 
-A diverse set of opinions and ideas in public discourse is desirable for many reasons, including the generation of novel solutions to social issues and the health of a nation's democracy. In fact, in the early days of social media, the internet was heralded as a tool to usher in a new age where everyone's voice could be heard, counted and healthy public debate would ensue (Puglisi & Snyder, 2015). Current views, however, center on the opposite: society appears to be increasingly polarized and hostile in online interactions. Online spaces have become the target of criticism and fears about cyberbullying, trolling, fake news and the potential for vulnerable individuals to become violently radicalized.
-Because isolation and antagonism prevents the kind of generative dialog social media at its best can create, we seek to understand and explore the mechanisms involved in online polarization. We will examine if identifiable biasing traits in traditional media sources may be predictive of increased polarization in user comments using a neural network text analysis of twitter posts. We will use a variety of tools and approaches found in relevant machine learning research.
+Media bias has been a topic of interest for policy makers and politicians particu- larly since the 2020 US presidential election. Society appears to be increasingly polarized and hostile in online interactions. Online spaces have become the target of criticism and fears about cyberbullying, trolling, fake news and the potential for vulnerable individuals to become violently radicalized. With this in mind, we built different supervised machine learning models to test if the text extracted from tweets posted by news media accounts is predictive of the polarization in the comments they receive. We used logistic regression, recurrent neural networks and convolutional neural networks to make our predictions. Using these models and data extracted from Twitter, we were able to predict polarization in comments with 65% accuracy. Our research aims to contribute to creating a more civil and less polarized space for discourse on social media.
 
+## Set Up
+The following modules were used for this analysis:
+```
+torch
+nltk
+gensim
+sklearn
+vaderSentiment
+networkx
+pandas
+numpy
+matplotlib
+seaborn
+```
+## Data Collection and Pre-processing
 
-## Midterm Presentation Slides
-This is a google slides deck on our progress so far.
-[Midterm Presentation Slides](https://docs.google.com/presentation/d/1N7TC0ldK4w6n4ULysJS4l5PE8TlKLi_6d1kI6oE6oPc/edit?usp=sharing)
+## Data Exploration
 
+## Model Building
 
-## Repo Contents
+###
+###
+###
 
-### tweet_scraping.ipynb
-(339 lines of code)
+## Model Interpretability 
 
-
-### pre_processing.py
-
-
-### Data Cleaning
-
-
-### Clean tweets
-
-
-### topics_articles
-
-
-### topics_twitter
-
-
-### sentiment_scores.ipynb
-(134 lines of code)
-
-
-### Controversy_scores
-
-
-### Collate_Data
-
-
+## Final Paper and Acknowledgements
+The research, analysis and results of this project are documented in [**Predicting_Polarization.pdf**](Predicting_Polarization.pdf).
+We want to thank professor **Amitabh Chaudhary** for his incredible support and feedback.
+Also, huge thanks to the Teaching Assistants: Jenny Long and Rosa Zhou.
