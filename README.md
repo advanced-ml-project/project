@@ -100,7 +100,7 @@ It was originally intended as a way to filter data fed into the models, however,
 
 ### Bi-Directional Recurrent Neural Network
 ### rnn_model.ipynb  
-*lines of code: ###*
+*lines of code: 171+*
 
 Trains and tests an LSTM RNN model on the desired dataset.
 Datafile can be specified in the parameters of the notebook, but requires a cleaned text feature column named `text` and a binary target column called `vaderCat`.
@@ -108,7 +108,7 @@ If your target column is labelled differently, this will need to be adjusted ins
 
 
 #### Also includes Integrated Gradient Model Interprebility Code  
-*lines of code: ### of total ###*  
+*lines of code: 81 of total 171*  
 
 This section is found near the end of the notebook. It produces an estimation of feature importance over the test dataset after the model is trained.
 
