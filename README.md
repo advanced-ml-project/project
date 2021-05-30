@@ -117,7 +117,7 @@ Same as topics_twitter.ipynb, but built to accept Kaggle NYT data.
 ## Model Building
 
 ### Bi-Directional Recurrent Neural Network
-### `rnn_model.ipynb` 
+#### `rnn_model.ipynb` 
 *lines of code: 171+*
 
 Trains and tests an LSTM RNN model on the desired dataset.
@@ -147,26 +147,36 @@ This section is found near the end of the notebook. It produces an estimation of
     
  3. **`evaluate.py`**  
    *lines of code: 199*  
+
    Contains training and test evaluation functions used in `rnn_model.ipynb`. 
    Based on [**Fake News Detection**](https://github.com/bentrevett/pytorch-sentiment-analysis/blob/master/1%20-%20Simple%20Sentiment%20Analysis.ipynb).
    
 
-
 ### Convolutional Neural Network
 #### `cnn_development.ipynb`
 *lines of code: 412 + 109 (IG section)*
+##### Uses sub-modules:
+1. **`dataclassCNN.py`** 
+    *lines of code: 35* 
+
+    File to create a Custom Data Class and Collate Function for PyTorch.
+
 
 ### Logistic Regression
 #### `Log Reg.ipynb`
 *lines of code: 927*
 
 ## Model Interpretability 
+### Feature importances using coefficients
+To get a sense of the feature importance in the ligistic regression model we ordered the coefficients by magnitude.
+The code is at the end of the ligistic regression notebook:
+* Log Reg.ipynb
+
 ### Integrated Gradients 
 
 Integrated Gradient is an interpretability algorithm used to understand how neural networks work. This algorithm, proposed by Sundararajan et al. (2017), attributes the prediction of a neural network to its input features. 
 
 The code to apply integrated gradients/feature importannce) is at the end of the notebook for each model:
-* Log Reg.ipynb (we didn't apply integrated gradients just checked the coefficients)
 * rnn_model.ipynb
 * cnn_development.ipynb
 
