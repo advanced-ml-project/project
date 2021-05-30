@@ -143,7 +143,7 @@ This section is found near the end of the notebook. It produces an estimation of
     
  3. **evaluate.py**  
    *lines of code: 199*  
-
+   
    Contains training and test evaluation functions used in `rnn_model.ipynb`.
    Based on [**Fake News Detection**](https://github.com/bentrevett/pytorch-sentiment-analysis/blob/master/1%20-%20Simple%20Sentiment%20Analysis.ipynb).
    
