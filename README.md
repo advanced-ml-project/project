@@ -77,7 +77,7 @@ Saves one file for all original tweets: `data/tweets_MMYYYY.csv` and a separate 
 *lines of code: 564*
 
 #### `Data Cleaning.ipynb`
-*lines of code: *  
+*lines of code: 93*  
 Same as Clean tweets.ipynb, but built to accept Kaggle NYT data.
 
 ### Creating Target Column: Sentiment Scores
@@ -153,7 +153,7 @@ This section is found near the end of the notebook. It produces an estimation of
 
 ### Convolutional Neural Network
 #### `cnn_development.ipynb`
-*lines of code: *
+*lines of code: 412 + 109 (IG section)*
 
 ### Logistic Regression
 #### `Log Reg.ipynb`
