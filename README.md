@@ -35,6 +35,7 @@ numpy
 matplotlib
 seaborn
 snscraper
+camptum
 ```
 ### Tweet Analysis Pipeline
 To pull, clean and run models using Twitter data scraped with [**snscraper**](https://github.com/JustAnotherArchivist/snscrape), run, in order:
