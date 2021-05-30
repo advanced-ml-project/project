@@ -72,6 +72,12 @@ Saves one file for all original tweets: `data/tweets_MMYYYY.csv` and a separate 
 
 
 ### Clean tweets.ipynb and Data Cleaning.ipynb
+### Clean tweets.ipynb
+*lines of code: 564*
+
+### Data Cleaning.ipynb
+*lines of code: *  
+Same as Clean tweets.ipynb, but built to accept Kaggle NYT data.
 
 ### sentiment_scores.ipynb  
 *lines of code: 677*
@@ -93,8 +99,16 @@ Topic modeling files can be included in the data cleaning pipeline, or skipped, 
 It was originally intended as a way to filter data fed into the models, however, due to lack of data quantity, it is not currently so used by any of our models.
 
 ### topics_twitter.ipynb & topics_articles.ipynb
+#### topics_twitter.ipynb
+*lines of code: 1451*
+
+#### topics_articles.ipynb
+*lines of code: 1980*  
+Same as topics_twitter.ipynb, but built to accept Kaggle NYT data.
+
 
 ### Controversy_scores.ipynb
+*lines of code: 527*
 
 ## Model Building
 
@@ -120,24 +134,28 @@ This section is found near the end of the notebook. It produces an estimation of
     Based on CAPP 30255 Homework 4.
     
     
-3. **lstm.py**  
+2. **lstm.py**  
    *lines of code: 53*  
    
     Contains the PyTorch RNN model object specifications.
     This is modularized so other model specifications could be tested. The best performing specifications are saved here.
     Based on [**Fake News Detection**](https://github.com/bentrevett/pytorch-sentiment-analysis/blob/master/1%20-%20Simple%20Sentiment%20Analysis.ipynb).
-   
     
-5. **evaluate.py**  
+ 3. **evaluate.py**  
    *lines of code: 199*  
-   
-    Contains training and test evaluation functions used in `rnn_model.ipynb`.
-    Based on [**Fake News Detection**](https://github.com/bentrevett/pytorch-sentiment-analysis/blob/master/1%20-%20Simple%20Sentiment%20Analysis.ipynb).
+
+   Contains training and test evaluation functions used in `rnn_model.ipynb`.
+   Based on [**Fake News Detection**](https://github.com/bentrevett/pytorch-sentiment-analysis/blob/master/1%20-%20Simple%20Sentiment%20Analysis.ipynb).
    
 
 
 ### Convolutional Neural Network
+#### cnn_development.ipynb
+*lines of code: *
+
 ### Logistic Regression
+#### Log Reg.ipynb
+*lines of code: 927*
 
 ## Model Interpretability 
 
