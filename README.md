@@ -61,17 +61,21 @@ To pull, clean and run models using downloaded Kaggle NYT articles data, run, in
 ## Data Collection and Pre-processing
 The following files are used in data collection and text preprocessing.
 
-### tweet_scraping.ipynb
+### tweet_scraping.ipynb  
+*lines of code: 850*
+  
 Uses  [**snscraper**](https://github.com/JustAnotherArchivist/snscrape) to retrieve original posts from NYT, FoxNews and Reuters Twitter feeds. The file name and date ranges for the search can be specified in the notebook parameters. After gathering original tweets, it attempts to retrieve all subsequent replies based on the ConversationID of the original tweet.
 
 Saves one file for all original tweets: `data/tweets_MMYYYY.csv` and a separate file for each news source's replies: `data/replies_MMYYYY_nyt.csv`, `data/replies_MMYYYY_fox.csv` and `data/replies_MMYYYY_reu.csv`. 
 
 **Warning**: This file can take nearly 12 hours to complete a datapull for a single month span of time.
-*lines of code: ###*
+
 
 ### Clean tweets.ipynb and Data Cleaning.ipynb
 
-### sentiment_scores.ipynb
+### sentiment_scores.ipynb  
+*lines of code: 677*
+
 Combines replies into a measure of setiment variance, merges with the original post dataset and outputs for use in our machine learning models.
 Can accept either the Kaggle NYT dataset or a Twitter dataset by commented/uncommenting parameters at the beginning of the notebook.
 
@@ -80,7 +84,7 @@ We attempted numerous ways to bin the sentiment scoring data. Current state is u
 This notebook uses [**VADER**](https://github.com/cjhutto/vaderSentiment#installation) to determine and score positive, negative and neutral tweet sentiment.
 
 **Warning:** If the `replies_SUFFIX.csv` is large, evaluating sentiment can take a considerable time period. Average time for our full dataset is approximately 20-30 minutes.
-*lines of code: 677*
+
 
 
 ## Data Exploration
@@ -95,32 +99,41 @@ It was originally intended as a way to filter data fed into the models, however,
 ## Model Building
 
 ### Bi-Directional Recurrent Neural Network
-### rnn_model.ipynb
+### rnn_model.ipynb  
+*lines of code: ###*
+
 Trains and tests an LSTM RNN model on the desired dataset.
 Datafile can be specified in the parameters of the notebook, but requires a cleaned text feature column named `text` and a binary target column called `vaderCat`.
 If your target column is labelled differently, this will need to be adjusted inside of the `train_test_datasets.py` sub-module.
-*lines of code: ###*
 
-#### Also includes Integrated Gradient Model Interprebility Code
+
+#### Also includes Integrated Gradient Model Interprebility Code  
+*lines of code: ### of total ###*  
+
 This section is found near the end of the notebook. It produces an estimation of feature importance over the test dataset after the model is trained.
-*lines of code: ### of total ###*
 
 ##### Uses sub-modules:
-1. **train_test_datasets.py**
+1. **train_test_datasets.py**  
+    *lines of code: 120*  
+    
     Imports and splits the full dataset into train.csv, validate.csv and test.csv to be received by the dataloaders internal to **rnn_model.ipynb**.
     Based on CAPP 30255 Homework 4.
-    *lines of code: 120*
     
-3. **lstm.py**
+    
+3. **lstm.py**  
+   *lines of code: 53*  
+   
     Contains the PyTorch RNN model object specifications.
     This is modularized so other model specifications could be tested. The best performing specifications are saved here.
-    Based on [**Fake News Detection**](https://github.com/bentrevett/pytorch-sentiment- analysis/blob/master/1%20-%20Simple%20Sentiment%20Analysis.ipynb).
-    *lines of code: 53*
+    Based on [**Fake News Detection**](https://github.com/bentrevett/pytorch-sentiment-analysis/blob/master/1%20-%20Simple%20Sentiment%20Analysis.ipynb).
+   
     
-5. **evaluate.py**
+5. **evaluate.py**  
+   *lines of code: 199*  
+   
     Contains training and test evaluation functions used in `rnn_model.ipynb`.
-    Based on [**Fake News Detection**](https://github.com/bentrevett/pytorch-sentiment- analysis/blob/master/1%20-%20Simple%20Sentiment%20Analysis.ipynb).
-    *lines of code: 199*
+    Based on [**Fake News Detection**](https://github.com/bentrevett/pytorch-sentiment-analysis/blob/master/1%20-%20Simple%20Sentiment%20Analysis.ipynb).
+   
 
 
 ### Convolutional Neural Network
