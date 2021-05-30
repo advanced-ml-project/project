@@ -29,6 +29,29 @@ def train_model(model,
                 file_path = './data',
                 best_valid_loss = float("Inf"),
                 device='cpu'):
+    '''
+    Runs training and evaluation on validation data loop over specified number of epochs.
+    
+    Inputs:
+        - model: a PyTorch model object. In this case, the one from lstm.py.
+        - optimizer: a PyTorch Optimizer to be used.
+        - train_loader: the iterator with training data.
+        - valid_loader: the iterator with validation data.
+        - criterion: a PyTorch loss function instance.
+        - num_epochs: int, how many epochs to train over.
+        - file_path: string, where to save model specs.
+        - best_valid_loss: float, defaults to infinity to start training from scratch, 
+            but if continuing from a prior run and wish to only save better outcomes,
+            you can pass the last best model's loss.
+        - device: string, 'cpu' or 'cuda' if running on google colab.
+    
+    Returns: None.
+    
+    Other Effects:
+        - Saves the best model's state dictionary to designated
+        file path as 'model.pt'
+        - Saves loss history to designated file path as '/metrics.pt'
+    '''
     
     eval_every = len(train_loader) // 2
     
@@ -103,6 +126,22 @@ def train_model(model,
 # Save and Load Functions
 
 def save_checkpoint(save_path, model, optimizer, valid_loss):
+    '''
+    Used in train_model() to save the current best model.
+    
+    Inputs:
+        - save_path: string, where to save model specs.
+        - model: a PyTorch model object.
+        - optimizer: a PyTorch Optimizer to be used.
+        - train_loader: the iterator with training data.
+        - valid_loss: float, current model loss.
+        
+    Returns: None.
+    
+    Other Effects:
+        - Saves the best model's state dictionary to designated
+        file path as 'model.pt'
+    '''
 
     if save_path == None:
         return
@@ -116,10 +155,24 @@ def save_checkpoint(save_path, model, optimizer, valid_loss):
 
 
 def load_checkpoint(load_path, model, optimizer, device='cpu'):
-
+    '''
+    Used in evaluate() to load the current best model.
+    
+    Inputs:
+        - load_path: string, where to save model specs.
+        - model: a PyTorch model object.
+        - optimizer: a PyTorch Optimizer to be used.
+        - device: string, 'cpu' or 'cuda' if using google colab.
+        
+    Returns: float, the models last validation loss.
+    
+    Other Effects:
+        - Loads the saved state at load_path
+        into the current model object
+    '''
     if load_path==None:
         return
-    
+
     state_dict = torch.load(load_path, map_location=device)
     print(f'Model loaded from <== {load_path}')
     
@@ -130,7 +183,21 @@ def load_checkpoint(load_path, model, optimizer, device='cpu'):
 
 
 def save_metrics(save_path, train_loss_list, valid_loss_list, global_steps_list):
-
+    '''
+    Used in train_model() to save the current best model.
+    
+    Inputs:
+        - save_path: string, where to save model specs.
+        - train_loss_list: list of float, current model training losses.
+        - valid_loss_list: list of float, current model validation losses.
+        - global_steps_list: list of loss function calculation steps.
+        
+    Returns: None.
+    
+    Other Effects:
+        - Saves the best model's loss history designated
+        file path as 'metrics.pt'
+    '''
     if save_path == None:
         return
     
@@ -143,7 +210,17 @@ def save_metrics(save_path, train_loss_list, valid_loss_list, global_steps_list)
 
 
 def load_metrics(load_path, device='cpu'):
-
+    '''
+    Used in evaluate() to load the current best model.
+    
+    Inputs:
+        - load_path: string, where find model specs.
+        - device: string, 'cpu' or 'cuda' if using google colab.
+    Returns: tuple (train_loss_list, valid_loss_list, global_steps_list)
+        - train_loss_list: list of float, current model training losses.
+        - valid_loss_list: list of float, current model validation losses.
+        - global_steps_list: list of loss function calculation steps.
+    '''
     if load_path==None:
         return
     
@@ -157,6 +234,23 @@ def load_metrics(load_path, device='cpu'):
 # Evaluation Function
 
 def evaluate(model, test_loader, device='cpu'):
+    '''
+    Accepts the current best model and evaluates
+    the test dataset. Printing test accuracy and
+    an sklearn confusion matrix report.
+    
+    Inputs:
+    - model: PyTorch model object, the current best model.
+    - test_loader: an iterator with test data.
+    - device: string, 'cpu' or 'cuda' if using google colab.
+    
+    Returns: None.
+    
+    Other Effects:
+        Prints test accuracy.
+        Prints an Accuracy / F1 Report (sklearn)
+        Prints a Confusion Matrix (sklearn & matplotlib)
+    '''
     y_pred = []
     y_true = []
 
