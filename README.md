@@ -163,6 +163,14 @@ This section is found near the end of the notebook. It produces an estimation of
 ## Model Interpretability 
 ### Integrated Gradients 
 
+Integrated Gradient is an interpretability algorithm used to understand how neural networks work. This algorithm, proposed by Sundararajan et al. (2017), attributes the prediction of a neural network to its input features. 
+
+The code to apply integrated gradients/feature importannce) is at the end of the notebook for each model:
+* Log Reg.ipynb (we didn't apply integrated gradients just checked the coefficients)
+* rnn_model.ipynb
+* cnn_development.ipynb
+
+
 
 ## Final Paper and Acknowledgements
 The research, analysis and results of this project are documented in [**Predicting_Polarization.pdf**](documents/Predicting_Polarization.pdf).
